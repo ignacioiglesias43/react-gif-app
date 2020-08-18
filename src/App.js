@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import AddCategory from "./components/AddCategory";
+import GifGrid from "./components/GifGrid";
 
-function App() {
+const App = () => {
+  const [categories, setCategories] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h2 className="animate__jello animate__backInDown">Gif Expert App</h2>
+      <AddCategory setCategories={setCategories} />
+      <hr />
+      <ul>
+        {categories.length > 0 ? (
+          categories.map((category) => (
+            <GifGrid key={category} category={category} />
+          ))
+        ) : (
+          <p id="no-gif">Aquí se mostrarán los GIF</p>
+        )}
+      </ul>
+    </>
   );
-}
+};
 
 export default App;
